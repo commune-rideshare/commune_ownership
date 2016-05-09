@@ -35,6 +35,12 @@
 @import 'responsive/embed';
 @import 'responsive/manager';
 
+//
+// Libraries
+//
+
+@import 'vendor/bootstrap';
+
 
 //
 // Basics
@@ -47,10 +53,8 @@
 // Layout
 //
 
-@import 'layout/header';
-@import 'layout/footer';
-@import 'layout/main';
-
+@import 'layout/simulation';
+@import 'layout/control';
 
 //
 // Components
@@ -73,17 +77,10 @@
 //@import 'overrides/overrides';
 
 //
-// Libraries
-//
-
-//@import 'libraries/xxx';
-
-
-//
 // Uncomment for debug mode
 //
 
 //$pesticide-debug-outline: true;
 //$pesticide-debug-depth: true;
-
+//
 // @import 'debug/pesticide';

@@ -5,18 +5,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>PWR STATIC</title>
-  
+  <title>COMMUNE: ownership model</title>
+
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@pwr_studio" />
   <meta name="twitter:creator" content="@pwr_studio" />
-  
+
   <meta property="og:title" content="">
   <meta property="og:type" content="website">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
   <meta property="og:description" content="" />
-  
 
   <link href='style.css' rel="stylesheet" type="text/css">
 
@@ -24,7 +23,157 @@
 
 <body>
 
-  <h1>PWR STATIC</h1>
+  <div id="app" class='container-fluid'>
+
+    <div id='control' class='col-md-4 control'>
+      <form class="form-horizontal">
+        <fieldset>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="drivers">Drivers</label>
+            <div class="col-md-8">
+              <input id="drivers" name="drivers" type="text" v-model="numberOfDrivers" class="form-control input-md">
+              <span class="help-block">Initial number of drivers</span>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="growthrate">Growth rate</label>
+            <div class="col-md-8">
+              <input id="growthrate" name="growthrate" type="text" v-model="growthRate" class="form-control input-md">
+              <span class="help-block">New drivers / existing driver / month</span>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="riders">Riders</label>
+            <div class="col-md-8">
+              <input id="riders" name="riders" type="text" v-model="averagePassengerPerRide" class="form-control input-md">
+              <span class="help-block">Average number of passengers / ride</span>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="downtime">Downtime</label>
+            <div class="col-md-8">
+              <input id="downtime" name="downtime" type="text" v-model="downtime" class="form-control input-md">
+              <span class="help-block">0 = no downtime / 1 = all downtime</span>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="distribution">Distribution</label>
+            <div class="col-md-8">
+              <input id="distribution" name="distribution" type="text" v-model="feeDistributionFactor" class="form-control input-md">
+              <span class="help-block">Factor of fee that is redistributed</span>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="distance">Distance</label>
+            <div class="col-md-8">
+              <input id="distance" name="distance" type="text" v-model="averageDistance" class="form-control input-md">
+              <span class="help-block">Distance of average ride (km)</span>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="speed">Speed</label>
+            <div class="col-md-8">
+              <input id="speed" name="speed" type="text" v-model="averageSpeed" class="form-control input-md">
+              <span class="help-block">Average speed (km/h)</span>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="population">Population</label>
+            <div class="col-md-8">
+              <input id="population" name="population" type="text" v-model="population" class="form-control input-md">
+
+            </div>
+          </div>
+
+          <!-- Multiple Radios -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="timescale">One second is</label>
+            <div class="col-md-8">
+              <div class="radio">
+                <label for="timescale-0">
+                  <input type="radio" name="timescale" id="timescale-0" value="60" checked="checked"> a minute
+                </label>
+              </div>
+              <div class="radio">
+                <label for="timescale-1">
+                  <input type="radio" name="timescale" id="timescale-1" value="3600"> an hour
+                </label>
+              </div>
+              <div class="radio">
+                <label for="timescale-2">
+                  <input type="radio" name="timescale" id="timescale-2" value="86400"> a day
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="start">Start simulation</label>
+            <div class="col-md-8">
+              <div v-on:click="startSimulation" id="start" name="start" class="btn btn-primary">Start</div>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+    </div>
+
+    <div id='simulation' class='col-md-8 simulation disabled'>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Time</div>
+        <div class="panel-body">{{time}}</div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">Number of Drivers</div>
+        <div class="panel-body">{{numberOfDrivers}}</div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Number of Ownership-shares</div>
+        <div class="panel-body">{{ownershipShares}}</div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Network funds (USD)</div>
+        <div class="panel-body">{{networkFunds}}</div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Ownership: Private / Communal</div>
+        <div class="panel-body">
+          <progress value='{{privateOwnership}}'></progress>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Ownership: Drivers / Riders</div>
+        <div class="panel-body">
+          <progress value='{{driverOwnership}}'></progress>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 
   <script src='app.min.js'></script>
 

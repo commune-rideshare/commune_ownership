@@ -26,3 +26,8 @@ a {
     color: $main-color;
   }
 }
+
+.container-fluid,
+.container {
+  margin-top: 2 * $line-height;
+}

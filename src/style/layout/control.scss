@@ -1,0 +1,19 @@
+.control {
+  min-height: 100vh;
+}
+
+section {
+  max-width: 400px;
+  margin-bottom: $line-height;
+  margin-top: $line-height;
+}
+
+progress {
+  width: 100%;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+  filter: grayscale(1);
+}
