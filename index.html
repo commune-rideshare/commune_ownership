@@ -33,7 +33,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="drivers">Drivers</label>
             <div class="col-md-8">
-              <input id="drivers" name="drivers" type="text" v-model="numberOfDrivers" class="form-control input-md">
+              <input id="drivers" name="drivers" type="text" v-model="initialNumberOfDrivers" class="form-control input-md">
               <span class="help-block">Initial number of drivers</span>
             </div>
           </div>
@@ -137,25 +137,27 @@
 
     <div id='simulation' class='col-md-8 simulation disabled'>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default col-md-6">
         <div class="panel-heading">Time</div>
         <div class="panel-body">{{time}}</div>
       </div>
       
-      <div class="panel panel-default">
+      <div class="panel panel-default col-md-6 pull-right red">
         <div class="panel-heading">Number of Drivers</div>
         <div class="panel-body">{{numberOfDrivers}}</div>
       </div>
-
-      <div class="panel panel-default">
+      
+      <div class="panel panel-default col-md-6">
         <div class="panel-heading">Number of Ownership-shares</div>
         <div class="panel-body">{{ownershipShares}}</div>
       </div>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default col-md-6 pull-right">
         <div class="panel-heading">Network funds (USD)</div>
         <div class="panel-body">{{networkFunds}}</div>
       </div>
+      
+      <div class='ct-chart'></div>
 
       <div class="panel panel-default">
         <div class="panel-heading">Ownership: Private / Communal</div>

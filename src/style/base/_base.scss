@@ -31,3 +31,12 @@ a {
 .container {
   margin-top: 2 * $line-height;
 }
+
+.ct-chart {
+  min-width: 100%;
+  min-height: $line-height;
+}
+
+.red {
+  background: red;
+}

@@ -35,6 +35,7 @@
     "browserify": "^13.0.0",
     "browsernizr": "^2.1.0",
     "chance": "^1.0.3",
+    "chartist": "^0.9.7",
     "gulp-handlebars": "^4.0.0",
     "gulp-sourcemaps": "^1.6.0",
     "handlebars": "^4.0.5",
